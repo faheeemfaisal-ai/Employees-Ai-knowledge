@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI Workforce Intelligence</title>
+<title>AI Workforce Intelligence — 10Q</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#06070a;color:#f4f6fa;font:14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 button,input,select{font:inherit}.wrap{max-width:1050px;margin:auto;padding:20px 14px 60px}.top{display:flex;justify-content:space-between;align-items:center;padding:10px 0 20px;border-bottom:1px solid #252a34}.brand{font-weight:850;font-size:18px}.brand span{color:#8d7bff}.pill{font-size:11px;color:#aab3c0}.hero{margin-top:20px;padding:25px;border:1px solid #252a34;border-radius:20px;background:radial-gradient(circle at 0 0,#1a1234,transparent 55%),#0d1016}.eyebrow{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#a99cff;font-weight:800}.hero h1{font-size:clamp(34px,7vw,62px);line-height:1;margin:8px 0 14px;letter-spacing:-.04em}.hero p{color:#b9c2cf;line-height:1.55}.card{margin-top:16px;padding:20px;border:1px solid #252a34;border-radius:17px;background:#0d1016}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{padding:15px;border:1px solid #252a34;border-radius:13px;background:#10141b}.metric small{color:#929baa}.metric b{display:block;font-size:26px;margin-top:3px}.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label{display:block;color:#9ba4b2;font-size:11px;margin-bottom:6px}.field input,.field select{width:100%;padding:12px;border-radius:10px;border:1px solid #2a303b;background:#080b10;color:#fff}.btn{border:0;border-radius:10px;padding:12px 15px;font-weight:800;cursor:pointer}.primary{background:linear-gradient(135deg,#7b5cff,#4c86ff);color:#fff}.secondary{background:#171c24;color:#e7ebf2;border:1px solid #2a303b}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.qmeta{display:flex;justify-content:space-between;color:#98a2b0;font-size:11px}.bar{height:7px;background:#1c212a;border-radius:9px;margin:10px 0 18px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#7b5cff,#4c86ff);width:0}.question{font-size:22px;line-height:1.3;font-weight:750;margin-bottom:16px}.opts{display:grid;gap:9px}.opt{background:#0a0e13;border:1px solid #292f3a;color:#e9edf4;padding:14px;border-radius:11px;text-align:left;cursor:pointer}.opt.good{border-color:#29d5a4;background:#0d211c}.opt.bad{border-color:#ff6078;background:#281019}.opt:disabled{cursor:default}.explain{display:none;margin-top:12px;padding:12px;border:1px solid #252a34;border-radius:10px;color:#c5ceda;background:#090c11;line-height:1.5;font-size:12px}.show{display:block}.hidden{display:none}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:11px 8px;border-bottom:1px solid #252a34;text-align:left}.table th{font-size:10px;color:#929baa}.badge{padding:4px 7px;border-radius:99px;font-size:10px;font-weight:800;background:#181e28}.green{color:#5ce2bf;background:#0b241e}.purple{color:#c2b6ff;background:#1e1731}.red{color:#ff9aaa;background:#2a1219}.domain{display:grid;gap:9px}.drow{display:grid;grid-template-columns:140px 1fr 42px;gap:9px;align-items:center;font-size:11px}.dbar{height:7px;background:#1c212a;border-radius:9px;overflow:hidden}.dbar i{display:block;height:100%;background:linear-gradient(90deg,#7b5cff,#4c86ff)}.note{font-size:11px;color:#929baa;line-height:1.5}.footer{text-align:center;color:#626b78;font-size:10px;margin-top:22px}
@@ -29,7 +29,7 @@ button,input,select{font:inherit}.wrap{max-width:1050px;margin:auto;padding:20px
 <div class="field"><label>EMPLOYEE NAME</label><input id="name" placeholder="Employee name"></div>
 <div class="field"><label>DEPARTMENT / ROLE</label><input id="role" placeholder="e.g. Engineering"></div>
 </div>
-<div class="toolbar"><button class="btn primary" onclick="start()">Start 20-question assessment →</button><button class="btn secondary" onclick="show('rank')">View rankings</button></div>
+<div class="toolbar"><button class="btn primary" onclick="start()">Start 10-question assessment →</button><button class="btn secondary" onclick="show('rank')">View rankings</button></div>
 </div>
 </section>
 
@@ -63,8 +63,7 @@ button,input,select{font:inherit}.wrap{max-width:1050px;margin:auto;padding:20px
 </div>
 
 <script>
-const Q=[
-["AI Fundamentals","Which best describes an LLM?",["A database containing every answer","A neural model trained to predict and generate token sequences","A fixed rules engine","A search index"],1,"An LLM learns statistical patterns in token sequences and generates outputs from those patterns."],
+const Q=[["AI Fundamentals","Which best describes an LLM?",["A database containing every answer","A neural model trained to predict and generate token sequences","A fixed rules engine","A search index"],1,"An LLM learns statistical patterns in token sequences and generates outputs from those patterns."],
 ["AI Fundamentals","What is inference?",["Training a model","Using a trained model to produce an output","Deleting a model","Labelling data"],1,"Inference means using a trained model on input data to generate a prediction or response."],
 ["AI Fundamentals","Why can an AI answer sound confident but be wrong?",["AI is always connected to the internet","Fluent generation does not guarantee factual verification","GPUs randomly change facts","Training makes models omniscient"],1,"Fluency and factual correctness are different properties."],
 ["Generative AI","What is RAG mainly designed to do?",["Retrieve relevant information to ground generation","Make GPUs faster","Replace all databases","Remove the need for prompts"],0,"RAG retrieves relevant information and supplies it to a model when generating a response."],
@@ -73,20 +72,9 @@ const Q=[
 ["Prompting","What usually improves a business AI prompt?",["More emojis","Clear context and success criteria","Making it vague","Removing constraints"],1,"Clear task definitions and constraints make the desired result easier for the model to follow."],
 ["Data & ML","What is data leakage?",["A slow network","Information crossing the intended training/evaluation boundary","A missing keyboard","A small dataset"],1,"Leakage can make evaluation scores look unrealistically strong."],
 ["Data & ML","Why keep test data separate?",["To reduce storage","To estimate performance on unseen data","To increase parameters","To guarantee zero errors"],1,"A separate test set gives a better estimate of generalisation."],
-["Data & ML","Which is a classification metric?",["Accuracy","Screen size","Disk capacity","Pixel density"],0,"Accuracy is one common classification metric; precision, recall and F1 may also be appropriate."],
-["AI Safety","What should you do with an important AI-generated claim?",["Trust it if confident","Verify it against authoritative sources and apply human judgement","Ask it three times","Publish immediately"],1,"AI confidence is not evidence."],
-["AI Safety","What is prompt injection?",["A faster GPU","Crafted input intended to manipulate an AI system's instructions or actions","A backup","Compression"],1,"Prompt injection attempts to influence model behaviour through untrusted content."],
-["AI Safety","Why avoid putting confidential company information into an unapproved AI tool?",["It makes text shorter","It may create privacy, confidentiality and security risks","AI cannot read it","It always deletes it"],1,"Data handling must follow organisational security and privacy controls."],
-["Agents & Tools","What distinguishes an AI agent from a simple chatbot?",["It always knows facts","It can use tools and take actions toward a goal","It cannot fail","It needs no instructions"],1,"Agents commonly combine models, tools, state and action loops."],
-["Agents & Tools","What is a useful guardrail for an agent that can send money or emails?",["Unlimited permission","Human approval for high-impact actions","No logging","Hide its actions"],1,"High-impact actions should have policy controls and/or human approval."],
-["AI Engineering","A deployed model starts producing unsafe results. What should happen first?",["Increase temperature","Inspect monitoring, reproduce the issue and activate containment/rollback","Delete logs","Ignore it"],1,"Production incidents require observation, reproduction, containment and mitigation."],
-["AI Engineering","Why monitor an AI system after deployment?",["Models become perfect","Usage/data can change and new failures can appear","Monitoring replaces testing","It increases model size"],1,"Production conditions can drift and expose new reliability or safety issues."],
-["AI Strategy","When should a company automate with AI?",["Whenever AI exists","When expected value outweighs cost/risk and success can be measured","Only marketing tasks","Never"],1,"AI should solve a real problem with measurable value and acceptable risk."],
-["AI Strategy","A repetitive task has expensive mistakes. Best approach?",["Fully automate instantly","Use human-in-the-loop review with thresholds and auditability","Hide uncertainty","Never automate"],1,"Human review can reduce costly errors while retaining automation benefits."],
-["Responsible AI","Why document AI limitations?",["It guarantees zero bias","Users need to understand failure modes and boundaries","It removes testing","It makes the model smarter"],1,"Limitations documentation helps safe use, oversight and accountability."]
-];
+["Data & ML","Which is a classification metric?",["Accuracy","Screen size","Disk capacity","Pixel density"],0,"Accuracy is one common classification metric; precision, recall and F1 may also be appropriate."]];
 let s={i:0,score:0,answers:[],name:"",role:""};
-const KEY="ai-workforce-results-v3";
+const KEY="ai-workforce-results-v10";
 const domains=[...new Set(Q.map(x=>x[0]))];
 const get=()=>JSON.parse(localStorage.getItem(KEY)||"[]");
 function set(d){localStorage.setItem(KEY,JSON.stringify(d))}
@@ -108,12 +96,8 @@ function newAssessment(){document.getElementById("name").value="";document.getEl
 function clearAll(){if(confirm("Delete all local employee results?")){localStorage.removeItem(KEY);refresh();rank();analytics()}}
 function exportCSV(){let d=get();if(!d.length){alert("No results yet.");return}let rows=[["Name","Role","Score","Level","Date"],...d.map(x=>[x.name,x.role,x.score,x.level,x.date])];let csv=rows.map(r=>r.map(v=>`"${String(v).replaceAll('"','""')}"`).join(",")).join("\\n");let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="ai-workforce-results.csv";a.click()}
 function esc(x){return String(x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
-document.getElementById("next").addEventListener("click",goNext);
+document.getElementById("next").onclick = goNext;
 refresh();
-
-document.getElementById("next").addEventListener("click", function () {
-  goNext();
-});
 
 </script>
 </body>
