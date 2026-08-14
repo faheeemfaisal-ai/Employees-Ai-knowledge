@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Workforce Intelligence</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#06070a;color:#f4f6fa;font:14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit}.wrap{max-width:1050px;margin:auto;padding:20px 14px 60px}.top{display:flex;justify-content:space-between;align-items:center;padding:10px 0 20px;border-bottom:1px solid #252a34}.brand{font-weight:850;font-size:18px}.brand span{color:#8d7bff}.pill{font-size:11px;color:#aab3c0}.hero{margin-top:20px;padding:25px;border:1px solid #252a34;border-radius:20px;background:radial-gradient(circle at 0 0,#1a1234,transparent 55%),#0d1016}.eyebrow{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#a99cff;font-weight:800}.hero h1{font-size:clamp(34px,7vw,62px);line-height:1;margin:8px 0 14px;letter-spacing:-.04em}.hero p{color:#b9c2cf;line-height:1.55}.card{margin-top:16px;padding:20px;border:1px solid #252a34;border-radius:17px;background:#0d1016}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{padding:15px;border:1px solid #252a34;border-radius:13px;background:#10141b}.metric small{color:#929baa}.metric b{display:block;font-size:26px;margin-top:3px}.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label{display:block;color:#9ba4b2;font-size:11px;margin-bottom:6px}.field input,.field select{width:100%;padding:12px;border-radius:10px;border:1px solid #2a303b;background:#080b10;color:#fff}.btn{border:0;border-radius:10px;padding:12px 15px;font-weight:800;cursor:pointer}.primary{background:linear-gradient(135deg,#7b5cff,#4c86ff);color:#fff}.secondary{background:#171c24;color:#e7ebf2;border:1px solid #2a303b}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.qmeta{display:flex;justify-content:space-between;color:#98a2b0;font-size:11px}.bar{height:7px;background:#1c212a;border-radius:9px;margin:10px 0 18px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#7b5cff,#4c86ff);width:0}.question{font-size:22px;line-height:1.3;font-weight:750;margin-bottom:16px}.opts{display:grid;gap:9px}.opt{background:#0a0e13;border:1px solid #292f3a;color:#e9edf4;padding:14px;border-radius:11px;text-align:left;cursor:pointer}.opt.good{border-color:#29d5a4;background:#0d211c}.opt.bad{border-color:#ff6078;background:#281019}.opt:disabled{cursor:default}.explain{display:none;margin-top:12px;padding:12px;border:1px solid #252a34;border-radius:10px;color:#c5ceda;background:#090c11;line-height:1.5;font-size:12px}.show{display:block}.hidden{display:none}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:11px 8px;border-bottom:1px solid #252a34;text-align:left}.table th{font-size:10px;color:#929baa}.badge{padding:4px 7px;border-radius:99px;font-size:10px;font-weight:800;background:#181e28}.green{color:#5ce2bf;background:#0b241e}.purple{color:#c2b6ff;background:#1e1731}.red{color:#ff9aaa;background:#2a1219}.domain{display:grid;gap:9px}.drow{display:grid;grid-template-columns:140px 1fr 42px;gap:9px;align-items:center;font-size:11px}.dbar{height:7px;background:#1c212a;border-radius:9px;overflow:hidden}.dbar i{display:block;height:100%;background:linear-gradient(90deg,#7b5cff,#4c86ff)}.note{font-size:11px;color:#929baa;line-height:1.5}.footer{text-align:center;color:#626b78;font-size:10px;margin-top:22px}
+@media(max-width:700px){.grid{grid-template-columns:1fr 1fr}.form{grid-template-columns:1fr}.drow{grid-template-columns:105px 1fr 38px}}
+@media(max-width:430px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="brand"><span>AI</span> Workforce Intelligence</div><div class="pill">Office AI-readiness benchmark</div></header>
+
+<section id="home">
+<div class="hero"><div class="eyebrow">Automated employee assessment</div><h1>Measure your team's AI readiness.</h1><p>Employees answer the same practical AI questions. The app calculates their score, capability profile, office rank and team training priorities automatically.</p></div>
+<div class="grid">
+<div class="metric"><small>Employees</small><b id="n">0</b></div>
+<div class="metric"><small>Team average</small><b id="avg">—</b></div>
+<div class="metric"><small>AI-ready ≥75%</small><b id="ready">0</b></div>
+<div class="metric"><small>Top score</small><b id="top">—</b></div>
+</div>
+<div class="card">
+<h2>Start an assessment</h2><p class="note">Enter the employee details, then hand the phone/computer to the employee. Their result is saved locally in this browser in this demo.</p>
+<div class="form">
+<div class="field"><label>EMPLOYEE NAME</label><input id="name" placeholder="Employee name"></div>
+<div class="field"><label>DEPARTMENT / ROLE</label><input id="role" placeholder="e.g. Engineering"></div>
+</div>
+<div class="toolbar"><button class="btn primary" onclick="start()">Start 20-question assessment →</button><button class="btn secondary" onclick="show('rank')">View rankings</button></div>
+</div>
+</section>
+
+<section id="quiz" class="card hidden">
+<div class="qmeta"><span id="domain"></span><span id="count"></span></div><div class="bar"><div class="fill" id="fill"></div></div>
+<div class="question" id="question"></div><div class="opts" id="opts"></div><div class="explain" id="explain"></div>
+<div class="toolbar" style="justify-content:space-between"><button class="btn secondary" onclick="home()">Cancel</button><button class="btn primary" id="next" disabled>Next →</button></div>
+</section>
+
+<section id="result" class="card hidden">
+<div class="eyebrow">Assessment complete</div><h2 id="rname"></h2><div style="font-size:64px;font-weight:950" id="rscore"></div><div id="rlevel"></div><p class="note" id="rtext"></p>
+<h3>Capability profile</h3><div class="domain" id="rdomains"></div>
+<div class="toolbar"><button class="btn primary" onclick="newAssessment()">Assess next employee</button><button class="btn secondary" onclick="show('rank')">Open rankings</button><button class="btn secondary" onclick="exportCSV()">Export CSV</button></div>
+</section>
+
+<section id="rank" class="card hidden">
+<div class="eyebrow">Automatic office ranking</div><h2>Employee leaderboard</h2><p class="note">Rank is based on the employees stored in this browser. It is not a global ranking.</p>
+<div style="overflow:auto"><table class="table"><thead><tr><th>RANK</th><th>EMPLOYEE</th><th>ROLE</th><th>SCORE</th><th>LEVEL</th></tr></thead><tbody id="tbody"></tbody></table></div>
+<div class="toolbar"><button class="btn secondary" onclick="home()">← Assessment</button><button class="btn secondary" onclick="exportCSV()">Export results</button><button class="btn secondary" onclick="clearAll()">Clear all data</button></div>
+</section>
+
+<section id="analytics" class="card hidden">
+<div class="eyebrow">Team intelligence</div><h2>Training priorities</h2><p class="note">The weakest average capability becomes the first suggested training area.</p>
+<div class="grid"><div class="metric"><small>Strongest</small><b style="font-size:18px" id="strong"></b></div><div class="metric"><small>Weakest</small><b style="font-size:18px" id="weak"></b></div><div class="metric"><small>Average</small><b id="aavg"></b></div><div class="metric"><small>Priority</small><b style="font-size:18px" id="prio"></b></div></div>
+<div class="card"><div class="domain" id="teamDomains"></div><p class="note" id="action"></p></div>
+<div class="toolbar"><button class="btn secondary" onclick="home()">← Back</button></div>
+</section>
+
+<div class="toolbar" style="margin-top:18px"><button class="btn secondary" onclick="show('analytics');analytics()">Team analytics</button></div>
+<div class="footer">Prototype. For production use, connect this interface to a secure backend/database and validated benchmark population.</div>
+</div>
+
+<script>
+const Q=[
+["AI Fundamentals","Which best describes an LLM?",["A database containing every answer","A neural model trained to predict and generate token sequences","A fixed rules engine","A search index"],1,"An LLM learns statistical patterns in token sequences and generates outputs from those patterns."],
+["AI Fundamentals","What is inference?",["Training a model","Using a trained model to produce an output","Deleting a model","Labelling data"],1,"Inference means using a trained model on input data to generate a prediction or response."],
+["AI Fundamentals","Why can an AI answer sound confident but be wrong?",["AI is always connected to the internet","Fluent generation does not guarantee factual verification","GPUs randomly change facts","Training makes models omniscient"],1,"Fluency and factual correctness are different properties."],
+["Generative AI","What is RAG mainly designed to do?",["Retrieve relevant information to ground generation","Make GPUs faster","Replace all databases","Remove the need for prompts"],0,"RAG retrieves relevant information and supplies it to a model when generating a response."],
+["Generative AI","What is a multimodal AI system?",["One that only handles text","One that can work with multiple modalities such as text, images or audio","One without training data","A spreadsheet"],1,"Multimodal systems work across more than one input/output modality."],
+["Prompting","Which prompt is strongest?",["Do it","Explain","Give answer","Review this support transcript, identify 3 issues, assign severity, and return JSON with issue and action."],3,"Good prompts give context, task, constraints and output requirements."],
+["Prompting","What usually improves a business AI prompt?",["More emojis","Clear context and success criteria","Making it vague","Removing constraints"],1,"Clear task definitions and constraints make the desired result easier for the model to follow."],
+["Data & ML","What is data leakage?",["A slow network","Information crossing the intended training/evaluation boundary","A missing keyboard","A small dataset"],1,"Leakage can make evaluation scores look unrealistically strong."],
+["Data & ML","Why keep test data separate?",["To reduce storage","To estimate performance on unseen data","To increase parameters","To guarantee zero errors"],1,"A separate test set gives a better estimate of generalisation."],
+["Data & ML","Which is a classification metric?",["Accuracy","Screen size","Disk capacity","Pixel density"],0,"Accuracy is one common classification metric; precision, recall and F1 may also be appropriate."],
+["AI Safety","What should you do with an important AI-generated claim?",["Trust it if confident","Verify it against authoritative sources and apply human judgement","Ask it three times","Publish immediately"],1,"AI confidence is not evidence."],
+["AI Safety","What is prompt injection?",["A faster GPU","Crafted input intended to manipulate an AI system's instructions or actions","A backup","Compression"],1,"Prompt injection attempts to influence model behaviour through untrusted content."],
+["AI Safety","Why avoid putting confidential company information into an unapproved AI tool?",["It makes text shorter","It may create privacy, confidentiality and security risks","AI cannot read it","It always deletes it"],1,"Data handling must follow organisational security and privacy controls."],
+["Agents & Tools","What distinguishes an AI agent from a simple chatbot?",["It always knows facts","It can use tools and take actions toward a goal","It cannot fail","It needs no instructions"],1,"Agents commonly combine models, tools, state and action loops."],
+["Agents & Tools","What is a useful guardrail for an agent that can send money or emails?",["Unlimited permission","Human approval for high-impact actions","No logging","Hide its actions"],1,"High-impact actions should have policy controls and/or human approval."],
+["AI Engineering","A deployed model starts producing unsafe results. What should happen first?",["Increase temperature","Inspect monitoring, reproduce the issue and activate containment/rollback","Delete logs","Ignore it"],1,"Production incidents require observation, reproduction, containment and mitigation."],
+["AI Engineering","Why monitor an AI system after deployment?",["Models become perfect","Usage/data can change and new failures can appear","Monitoring replaces testing","It increases model size"],1,"Production conditions can drift and expose new reliability or safety issues."],
+["AI Strategy","When should a company automate with AI?",["Whenever AI exists","When expected value outweighs cost/risk and success can be measured","Only marketing tasks","Never"],1,"AI should solve a real problem with measurable value and acceptable risk."],
+["AI Strategy","A repetitive task has expensive mistakes. Best approach?",["Fully automate instantly","Use human-in-the-loop review with thresholds and auditability","Hide uncertainty","Never automate"],1,"Human review can reduce costly errors while retaining automation benefits."],
+["Responsible AI","Why document AI limitations?",["It guarantees zero bias","Users need to understand failure modes and boundaries","It removes testing","It makes the model smarter"],1,"Limitations documentation helps safe use, oversight and accountability."]
+];
+let s={i:0,score:0,answers:[],name:"",role:""};
+const KEY="ai-workforce-results-v3";
+const domains=[...new Set(Q.map(x=>x[0]))];
+const get=()=>JSON.parse(localStorage.getItem(KEY)||"[]");
+function set(d){localStorage.setItem(KEY,JSON.stringify(d))}
+function show(id){
+  ["home","quiz","result","rank","analytics"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!==id));
+  if(id==="rank")rank();
+  if(id==="analytics")analytics();
+}
+function home(){show("home");refresh()}
+function start(){s={i:0,score:0,answers:[],name:document.getElementById("name").value.trim(),role:document.getElementById("role").value.trim()};if(!s.name){alert("Enter employee name");return}show("quiz");question()}
+function question(){let q=Q[s.i];document.getElementById("domain").textContent=q[0];document.getElementById("count").textContent=`Question ${s.i+1} / ${Q.length}`;document.getElementById("fill").style.width=(s.i/Q.length*100)+"%";document.getElementById("question").textContent=q[1];document.getElementById("opts").innerHTML="";document.getElementById("explain").className="explain";document.getElementById("next").disabled=true;q[2].forEach((x,i)=>{let b=document.createElement("button");b.className="opt";b.textContent=x;b.onclick=()=>answer(i);document.getElementById("opts").appendChild(b)})}
+function answer(i){let q=Q[s.i],bs=[...document.querySelectorAll(".opt")];bs.forEach(b=>b.disabled=true);bs[q[3]].classList.add("good");let ok=i===q[3];if(!ok)bs[i].classList.add("bad");if(ok)s.score++;s.answers.push({domain:q[0],ok});document.getElementById("explain").textContent=(ok?"Correct. ":"Incorrect. ")+q[4];document.getElementById("explain").className="explain show";document.getElementById("next").disabled=false}
+function goNext(){if(s.i<Q.length-1){s.i++;question()}else finish()}
+function finish(){let pct=Math.round(s.score/Q.length*100),level=pct>=90?"AI Expert":pct>=75?"Advanced":pct>=55?"Working":pct>=35?"Developing":"Foundation";let ds={};s.answers.forEach(a=>{if(!ds[a.domain])ds[a.domain]=[0,0];ds[a.domain][1]++;if(a.ok)ds[a.domain][0]++});let domains2={};Object.entries(ds).forEach(([k,v])=>domains2[k]=Math.round(v[0]/v[1]*100));let d=get();d.push({id:Date.now(),name:s.name,role:s.role,score:pct,level,domains:domains2,date:new Date().toLocaleString()});set(d);rname.textContent=s.name;rscore.textContent=pct+"%";rlevel.innerHTML=`<span class="badge ${pct>=75?"green":pct>=55?"purple":"red"}">${level}</span>`;rtext.textContent=`${s.score}/${Q.length} correct. Added to the office ranking.`;rdomains.innerHTML=Object.entries(domains2).map(([k,v])=>`<div class="drow"><span>${k}</span><div class="dbar"><i style="width:${v}%"></i></div><b>${v}%</b></div>`).join("");show("result");refresh()}
+function rank(){let d=get().sort((a,b)=>b.score-a.score);tbody.innerHTML=d.length?d.map((x,i)=>`<tr><td><b>#${i+1}</b></td><td>${esc(x.name)}</td><td>${esc(x.role||"—")}</td><td><b>${x.score}%</b></td><td><span class="badge ${x.score>=75?"green":x.score>=55?"purple":"red"}">${x.level}</span></td></tr>`).join(""):'<tr><td colspan="5" style="text-align:center;color:#8993a1;padding:25px">No employees assessed.</td></tr>'}
+function analytics(){let d=get();if(!d.length){strong.textContent=weak.textContent=prio.textContent=aavg.textContent="—";teamDomains.innerHTML='<p class="note">Assess employees first.</p>';return}let a={};d.forEach(x=>Object.entries(x.domains||{}).forEach(([k,v])=>{(a[k]??=[]).push(v)}));let av=Object.entries(a).map(([k,v])=>[k,Math.round(v.reduce((x,y)=>x+y,0)/v.length)]).sort((x,y)=>y[1]-x[1]);strong.textContent=av[0][0];weak.textContent=av.at(-1)[0];prio.textContent=av.at(-1)[0];aavg.textContent=Math.round(d.reduce((x,y)=>x+y.score,0)/d.length)+"%";teamDomains.innerHTML=av.map(([k,v])=>`<div class="drow"><span>${k}</span><div class="dbar"><i style="width:${v}%"></i></div><b>${v}%</b></div>`).join("");action.textContent=`Recommended first training area: ${av.at(-1)[0]} (${av.at(-1)[1]}%).`}
+function refresh(){let d=get(),sc=d.map(x=>x.score);n.textContent=d.length;avg.textContent=d.length?Math.round(sc.reduce((a,b)=>a+b,0)/d.length)+"%":"—";ready.textContent=d.filter(x=>x.score>=75).length;top.textContent=d.length?Math.max(...sc)+"%":"—"}
+function newAssessment(){document.getElementById("name").value="";document.getElementById("role").value="";home()}
+function clearAll(){if(confirm("Delete all local employee results?")){localStorage.removeItem(KEY);refresh();rank();analytics()}}
+function exportCSV(){let d=get();if(!d.length){alert("No results yet.");return}let rows=[["Name","Role","Score","Level","Date"],...d.map(x=>[x.name,x.role,x.score,x.level,x.date])];let csv=rows.map(r=>r.map(v=>`"${String(v).replaceAll('"','""')}"`).join(",")).join("\\n");let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="ai-workforce-results.csv";a.click()}
+function esc(x){return String(x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+document.getElementById("next").addEventListener("click", goNext);
+refresh();
+
+</script>
+</body>
+</html>
